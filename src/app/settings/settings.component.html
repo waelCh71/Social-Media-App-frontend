@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="../../assets/images/VH.png">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Settings</title>
+
+    
+</head>
+
+<body class="messenger">
+    <div class="container-fluid newsfeed d-flex" id="wrapper">
+        <div class="row newsfeed-size f-width">
+            <div class="col-md-12 message-right-side">
+                <div class="row message-right-side-content">
+                    <div class="col-md-12">
+                        <div id="message-frame">
+                            <div class="message-sidepanel">
+                                <div class="message-contacts settings-sidebar">
+                                    <ul class="conversations">
+
+                                        <h2 class="p-3">General Settings</h2>
+                                        <!-- ACOUNT NAME-->
+                                        <li class="contact setting-active">
+                                            <a (click)="yourAcount()" class="wrap d-flex align-items-center">
+                                                <img src="assets/images/icons/settings/account.png" class="settings-icon" alt="Settings left sidebar">
+                                                <div class="meta">
+                                                    <p>Your Account</p>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <!-- EMAIL AND PHONE-->
+                                        <li class="contact">
+                                            <a (click)="navToContact()" class="wrap d-flex align-items-center">
+                                                <img src="assets/images/icons/settings/contact.png" class="settings-icon" alt="Settings left sidebar">
+                                                <div class="meta">
+                                                    <p>Contact Info</p>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <!--TODO INFO-->
+                                        <li class="contact">
+                                            <a (click)="navToInfo()" class="wrap d-flex align-items-center">
+                                                <img src="assets/images/icons/settings/privacy.png" class="settings-icon" alt="Settings left sidebar">
+                                                <div class="meta">
+                                                    <p>ACOUNT INFO</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        
+                                        <h2 class="p-3">Security &#38; Login</h2>
+
+                                        <!--TODO PASSWORD-->
+                                        <li class="contact">
+                                            <a  (click)="navToPassword()" class="wrap d-flex align-items-center">
+                                                <img src="assets/images/icons/settings/account.png" class="settings-icon" alt="Settings left sidebar">
+                                                <div class="meta">
+                                                    <p>Password</p>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <!--TODO SECURITY QUESTION-->
+                                        <li class="contact">
+                                            <a (click)="navToSecurityQuestion()" class="wrap d-flex align-items-center">
+                                                <img src="assets/images/icons/settings/security-question.png" class="settings-icon" alt="Settings left sidebar">
+                                                <div class="meta">
+                                                    <p>Security Question</p>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <!--TODO DELETE ACCOUNT-->
+                                        <li class="contact">
+                                            <a (click)="navToDeleteAcount()" class="wrap d-flex align-items-center">
+                                                <div class="meta"></div>
+                                                <p><img src="assets/images/icons/settings/deleteAcount.png" class="settings-icon" alt="Settings left sidebar"> DELETE ACCOUNT </p>
+                                            </a>
+                                        </li>
+
+                                        <!--TODO LOCATION-->
+                                        <li class="contact">
+                                            <a (click)="navToAcountLocation()" class="wrap d-flex align-items-center">
+                                                <div class="meta"></div>
+                                                <p><img src="assets/images/icons/settings/location.png" class="settings-icon" alt="Settings left sidebar"> Location</p>
+                                            </a>
+                                        </li>
+
+                                        <h2 class="p-3">Billing &#38; Payment</h2>
+
+                                        <!--TODO PAYEMENT METHODE-->
+                                        <li class="contact">
+                                            <a (click)="navToPayementMethode()" class="wrap d-flex align-items-center">
+                                                <div class="meta"></div>
+                                                <p><img src="assets/images/icons/settings/credit-card.png" class="settings-icon" alt="Settings left sidebar"> Automatic Payments</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <app-name-settings *ngIf="navNameUpdate"></app-name-settings>
+                            <app-contact-settings *ngIf="navContactUpdate"></app-contact-settings>
+                            <app-info-update *ngIf="navInfoUpdate"></app-info-update>
+                            <app-password-update *ngIf="navPasswordUpdate"></app-password-update>
+                            <app-delete-acount *ngIf="navDeleteAcount"></app-delete-acount>
+                            <app-acount-location *ngIf="navAccountLocation"></app-acount-location>
+                            <app-payement-update *ngIf="navPayementUpdate"></app-payement-update>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body></html>

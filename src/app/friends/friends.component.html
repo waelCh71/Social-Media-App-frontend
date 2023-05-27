@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="../../assets/images/VH.png" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Friends </title>
+
+    
+</head>
+
+<body class="profile">
+    <div class="container-fluid newsfeed d-flex" id="wrapper">
+        <div class="row newsfeed-size">
+            <div class="col-md-12 p-0">
+                
+                <!-- Header Place-->
+                <div class="row profile-right-side-content">
+                    <div class="user-profile">
+                        <div class="profile-header-background">
+                            <a class="profile-cover">
+                                <img [src]="coverPic" (error)="coverPic = errorImage" alt="">
+                            </a>
+                        </div>
+                        <div class="row profile-rows">
+
+                            <!--TODO ACCOUT INFO-->
+                            <div class="col-md-3">
+                                <div class="profile-info-left">
+                                    <div class="text-center">
+                                        <div class="profile-img w-shadow">
+                                            <div class="profile-img-overlay"></div>
+                                            <img [src]="profilePic" (error)="profilePic = errorImage" alt="" class="avatar img-circle">
+                                            
+                                        </div>
+                                        <p class="profile-fullname mt-3">{{user.fullName}}</p>
+                                        <p class="profile-username mb-3 text-muted">{{user.email}}</p>
+                                    </div>
+                                    
+                                    <!--TODO SEND INVITE-->
+                                    <div class="intro mt-4">
+                                        <div class="d-flex">
+                                            <button *ngIf="!myProfileOrNot" type="button" [style.background-color]="isMouseOver ? 'cyan' : ''"
+
+                                            [style.color]="isMouseOver ? '' : 'cornflowerblue'" 
+                                            (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" (click)="sendRequest()"
+                                             class="btn btn-follow mr-3"><i class='bx bx-plus'></i> {{friendshipButton}}</button>
+
+                                             <button *ngIf="declineRequestButton"  (click)="declineRequest()" style="color: red;"
+                                              class="btn btn-follow mr-3"><i class='bx bxs-no-entry'></i> Decline</button>
+
+                                            <button type="button" class="btn btn-start-chat" data-toggle="modal" data-target="#newMessageModal"
+                                            [style.background-color]="isMouseOver2 ? 'cyan' : ''"
+                                            [style.color]="isMouseOver2 ? '' : 'cornflowerblue'"
+                                            (mouseover)="onMouseOver2()" (mouseout)="onMouseOut2()">
+                                            <i class='bx bxs-message-rounded'></i> <span class="fs-8">Message</span></button>
+                                            
+                                            <!--TODO MORE -->
+                                            <!--<button type="button" class="btn btn-follow"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i> <span class="fs-8">More</span></button>
+                                            <div class="dropdown-menu dropdown-menu-right profile-ql-dropdown" aria-labelledby="moreMobile">
+                                                <a  class="dropdown-item">Timeline</a>
+                                                <a (click)="NotCofigureYet()" class="dropdown-item">About</a>
+                                                <a (click)="NotCofigureYet()" class="dropdown-item">Followers</a>
+                                                <a (click)="NotCofigureYet()" class="dropdown-item">Following</a>
+                                                <a (click)="NotCofigureYet()" class="dropdown-item">Photos</a>
+                                                <a (click)="NotCofigureYet()" class="dropdown-item">Videos</a>
+                                                <a (click)="NotCofigureYet()" class="dropdown-item">Check-Ins</a>
+                                                <a (click)="NotCofigureYet()" class="dropdown-item">Events</a>
+                                                <a (click)="NotCofigureYet()" class="dropdown-item">Likes</a>
+                                            </div>-->
+
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-9 p-0">
+                                <div class="profile-info-right">
+
+                                    <!-- TODO Friends section -->
+                                    <div class="row px-2">
+                                        <div class="col-md-10 ">
+
+                                            <ul class="list-inline profile-links d-flex justify-content-between w-shadow rounded">
+
+                                                <!--TODO TIMELINE-->
+                                                <li class="list-inline-item ">
+                                                    <a  routerLink="/profile/{{id}}">Timeline</a>
+                                                </li>
+
+                                                <!--TODO FRIENDS-->
+                                                <li class="list-inline-item profile-active">
+                                                    <a style="cursor: pointer;">Friends</a>
+                                                </li>
+
+                                                <!--TODO Community-->
+                                                <li class="list-inline-item">
+                                                    <a routerLink="/community">Community</a>
+                                                </li>
+                                                
+                                                <!--TODO PHOTO-->
+                                                <li class="list-inline-item">
+                                                    <a style="cursor: pointer;" (click)="navToPhoto()">Photos</a>
+                                                </li>
+
+                                                <!--TODO MORE NAV-->
+                                                <li class="list-inline-item dropdown">
+                                                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class='bx bx-dots-vertical-rounded'></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right profile-ql-dropdown">
+                                                        <a  class="dropdown-item">Activity Log</a>
+                                                        <a  class="dropdown-item">Videos</a>
+                                                        <a  class="dropdown-item">Check-Ins</a>
+                                                        <a  class="dropdown-item">Events</a>
+                                                        <a  class="dropdown-item">Likes</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+                                            
+                                            <ul class="list-group list-group-horizontal types-list fs-8">
+                                                <a  aria-disabled="false" class="list-group-item"
+                                                (click)="navToFriendsList()" style="cursor: pointer;"> Friends </a>
+
+                                                <a  class="list-group-item" *ngIf="myProfileOrNot"
+                                                (click)="navToRequestsList()" style="cursor: pointer;">Requests </a>
+
+                                                <a  class="list-group-item" *ngIf="myProfileOrNot"
+                                                (click)="navToRequestsSentList()" style="cursor: pointer;">Sent </a>
+
+                                                <a (click)="navToSuggestList()" *ngIf="myProfileOrNot"
+                                                class="list-group-item" style="cursor: pointer;"> Suggestion </a>
+
+                                                <a class="list-group-item" *ngIf="myProfileOrNot"
+                                                (click)="navToBlockedList()" style="cursor: pointer;">Blocked </a>
+
+                                                <!--TODO SEARCH BAR-->
+                                                <!--TODO ADD TO THE 2 div: data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"-->
+                                                <div class="list-group-item d-flex w-100 align-items-center p-0 form-inline dropdown search-form">
+                                                    <div class="input-group w-95"  id="searchDropdown">
+                                                        <input type="text" class="form-control search-input"
+                                                         placeholder="Search for people, companies, events and more..." aria-label="Search" 
+                                                          aria-describedby="search-addon" [(ngModel)]="searchInput" (keyup.enter)="searchUser()">
+                                                        <div class="input-group-append">
+                                                            <button class="btn search-button" style="background-color: cyan;"
+                                                              type="button" (click)="searchUser()"><i class='bx bx-search'></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="dropdown-menu notify-drop nav-drop shadow-sm" aria-labelledby="searchDropdown">
+                                                        <div class="notify-drop-title">
+                                                            <div class="row">
+                                                                <div class="col-md-6 col-sm-6 col-xs-6 fs-8">Search Results <span class="badge badge-pill badge-primary ml-2">29</span></div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end notify title -->
+                                                        <!-- notify content -->
+                                                        <div class="drop-content">
+                                                            <h6 class="dropdown-header">Peoples</h6>
+                                                            <li class="dropdown-item">
+                                                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                                                    <div class="notify-img">
+                                                                        <img src="assets/images/users/user-6.png" alt="Search result">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                                                    <a href="#" class="notification-user">Susan P. Jarvis</a>
+                                                                    <a href="#" class="btn btn-quick-link join-group-btn border text-right float-right">
+                                                                        Add Friend
+                                                                    </a>
+                                                                    <p class="time">6 Mutual friends</p>
+                                                                </div>
+                                                            </li>
+                                                            <li class="dropdown-item">
+                                                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                                                    <div class="notify-img">
+                                                                        <img src="assets/images/users/user-5.png" alt="Search result">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                                                    <a href="#" class="notification-user">Ruth D. Greene</a>
+                                                                    <a href="#" class="btn btn-quick-link join-group-btn border text-right float-right">
+                                                                        Add Friend
+                                                                    </a>
+                                                                </div>
+                                                            </li>
+                                                            <h6 class="dropdown-header">Groups</h6>
+                                                            <li class="dropdown-item">
+                                                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                                                    <div class="notify-img">
+                                                                        <img src="assets/images/groups/group-2.jpg" alt="Search result">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                                                    <a href="#" class="notification-user">Tourism</a>
+                                                                    <a href="#" class="btn btn-quick-link join-group-btn border text-right float-right">
+                                                                        Join
+                                                                    </a>
+                                                                    <p class="time">2.5k Members 35+ post a week</p>
+                                                                </div>
+                                                            </li>
+                                                            <li class="dropdown-item">
+                                                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                                                    <div class="notify-img">
+                                                                        <img src="assets/images/groups/group-1.png" alt="Search result">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                                                    <a href="#" class="notification-user">Argon Social Network <img src="assets/images/theme/verify.png" width="10px" class="verify" alt="Group verified"></a>
+                                                                    <a href="#" class="btn btn-quick-link join-group-btn border text-right float-right">
+                                                                        Join
+                                                                    </a>
+                                                                    <p class="time">10k Members 20+ post a week</p>
+                                                                </div>
+                                                            </li>
+                                                        </div>
+
+                                                        <div class="notify-drop-footer text-center">
+                                                            <a href="#">See More</a>
+                                                        </div>
+                                                    </ul>
+                                                </div>
+                                            </ul>
+                                            <app-friends-list *ngIf="friendsListComponent"></app-friends-list>
+                                            <app-requests-list *ngIf="requestsListComponent"></app-requests-list>
+                                            <app-requests-sent-list *ngIf="requestsSentListComponent"></app-requests-sent-list>
+                                            <app-suggestion-list *ngIf="sugguestListComponent"></app-suggestion-list>
+                                            <app-blocked-list *ngIf="blockedListComponent"></app-blocked-list>
+                                            <app-search-list *ngIf="serachListComonent" [nameUser]="searchInput"></app-search-list>
+                                        </div>
+                                        
+                                        <!--TODO ADD RIGHT SECTION; NB: CHANGE THE PRECEDENT DIV TO col-md-9-->
+                                        <!--<div class="col-md-3 profile-quick-media">
+                                            <h6 class="text-muted timeline-title">Suggustion</h6>
+                                            <div class="quick-media">
+                                                <div class="media-overlay"></div>
+                                                <a href="#" class="quick-media-img"><img src="assets/images/users/album/album-1.jpg" alt="Quick media"></a>
+                                                <div class="media-overlay-content">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="media-overlay-owner">
+                                                            <img src="assets/images/users/user-12.png" alt="Media owner image">
+                                                            <span class="overlay-owner-name fs-9">Irwin M. Spelle</span>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <a href="#" class="overlay-more" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
+                                                            <div class="dropdown-menu dropdown-menu-right nav-drop dropdown-shadow">
+                                                                <a class="dropdown-item" href="#">Save post</a>
+                                                                <a class="dropdown-item" href="#">Turn on notifications</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="overlay-bottom d-flex justify-content-between align-items-center">
+                                                        <div class="argon-reaction">
+                                                            <span class="like-btn">
+                                                                <a href="#" class="post-card-buttons" id="reactions"><i class='bx bxs-like mr-1'></i> 67</a>
+                                                                <ul class="reactions-box dropdown-shadow">
+                                                                    <li class="reaction reaction-like" data-reaction="Like"></li>
+                                                                    <li class="reaction reaction-love" data-reaction="Love"></li>
+                                                                    <li class="reaction reaction-haha" data-reaction="HaHa"></li>
+                                                                    <li class="reaction reaction-wow" data-reaction="Wow"></li>
+                                                                    <li class="reaction reaction-sad" data-reaction="Sad"></li>
+                                                                    <li class="reaction reaction-angry" data-reaction="Angry"></li>
+                                                                </ul>
+                                                            </span>
+                                                        </div>
+                                                        <div class="liked-users">
+                                                            <img src="assets/images/users/user-9.png" alt="Liked users">
+                                                            <img src="assets/images/users/user-6.png" alt="Liked users">
+                                                            <img src="assets/images/users/user-12.png" alt="Liked users">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="quick-media">
+                                                <div class="media-overlay"></div>
+                                                <a href="#" class="quick-media-img"><img src="assets/images/users/album/album-2.jpg" alt="Quick media"></a>
+                                                <div class="media-overlay-content">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="media-overlay-owner">
+                                                            <img src="assets/images/users/user-12.png" alt="Media owner image">
+                                                            <span class="overlay-owner-name fs-9">Irwin M. Spelle</span>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <a href="#" class="overlay-more" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
+                                                            <div class="dropdown-menu dropdown-menu-right nav-drop dropdown-shadow">
+                                                                <a class="dropdown-item" href="#">Save post</a>
+                                                                <a class="dropdown-item" href="#">Turn on notifications</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="overlay-bottom d-flex justify-content-between align-items-center">
+                                                        <div class="argon-reaction">
+                                                            <span class="like-btn">
+                                                                <a href="#" class="post-card-buttons" id="reactions"><i class='bx bxs-like mr-1'></i> 67</a>
+                                                                <ul class="reactions-box dropdown-shadow">
+                                                                    <li class="reaction reaction-like" data-reaction="Like"></li>
+                                                                    <li class="reaction reaction-love" data-reaction="Love"></li>
+                                                                    <li class="reaction reaction-haha" data-reaction="HaHa"></li>
+                                                                    <li class="reaction reaction-wow" data-reaction="Wow"></li>
+                                                                    <li class="reaction reaction-sad" data-reaction="Sad"></li>
+                                                                    <li class="reaction reaction-angry" data-reaction="Angry"></li>
+                                                                </ul>
+                                                            </span>
+                                                        </div>
+                                                        <div class="liked-users">
+                                                            <img src="assets/images/users/user-9.png" alt="Liked users">
+                                                            <img src="assets/images/users/user-6.png" alt="Liked users">
+                                                            <img src="assets/images/users/user-12.png" alt="Liked users">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="quick-media">
+                                                <div class="media-overlay"></div>
+                                                <a href="#" class="quick-media-img"><img src="assets/images/users/album/album-3.jpg" alt="Quick media"></a>
+                                                <div class="media-overlay-content">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="media-overlay-owner">
+                                                            <img src="assets/images/users/user-12.png" alt="Media owner image">
+                                                            <span class="overlay-owner-name fs-9">Irwin M. Spelle</span>
+                                                        </div>
+                                                        <div class="dropdown">
+                                                            <a href="#" class="overlay-more" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='bx bx-dots-horizontal-rounded'></i></a>
+                                                            <div class="dropdown-menu dropdown-menu-right nav-drop dropdown-shadow">
+                                                                <a class="dropdown-item" href="#">Save post</a>
+                                                                <a class="dropdown-item" href="#">Turn on notifications</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="overlay-bottom d-flex justify-content-between align-items-center">
+                                                        <div class="argon-reaction">
+                                                            <span class="like-btn">
+                                                                <a href="#" class="post-card-buttons" id="reactions"><i class='bx bxs-like mr-1'></i> 67</a>
+                                                                <ul class="reactions-box dropdown-shadow">
+                                                                    <li class="reaction reaction-like" data-reaction="Like"></li>
+                                                                    <li class="reaction reaction-love" data-reaction="Love"></li>
+                                                                    <li class="reaction reaction-haha" data-reaction="HaHa"></li>
+                                                                    <li class="reaction reaction-wow" data-reaction="Wow"></li>
+                                                                    <li class="reaction reaction-sad" data-reaction="Sad"></li>
+                                                                    <li class="reaction reaction-angry" data-reaction="Angry"></li>
+                                                                </ul>
+                                                            </span>
+                                                        </div>
+                                                        <div class="liked-users">
+                                                            <img src="assets/images/users/user-9.png" alt="Liked users">
+                                                            <img src="assets/images/users/user-6.png" alt="Liked users">
+                                                            <img src="assets/images/users/user-12.png" alt="Liked users">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New message modal -->
+    <div class="modal fade" id="newMessageModal" tabindex="-1" role="dialog" aria-labelledby="newMessageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header new-msg-header">
+                    <h5 class="modal-title" id="newMessageModalLabel">Start new conversation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body new-msg-body">
+                    <form action="" method="" class="new-msg-form">
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control search-input" rows="5" id="message-text" placeholder="Type a message..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer new-msg-footer">
+                    <button type="button" class="btn btn-primary btn-sm">Send message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+
+</html>

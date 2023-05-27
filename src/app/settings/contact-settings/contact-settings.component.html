@@ -1,0 +1,58 @@
+<div class="content">
+    <div class="settings-form p-4">
+        <h2>Contact Info</h2>
+
+        <!--Phone Change-->
+        <form #phoneForm="ngForm" (ngSubmit)="changePhone()" class="mt-4 settings-form">
+            <div class="row">
+                <label for="settingsPhoneNumber">Phone Number</label>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        
+                        <input type="text" ng2TelInput [ng2TelInputOptions]="{initialCountry: 'tn'}"
+                        value="phoneNumber" [(ngModel)]="phoneNumber"
+                            name="phoneNumber" maxlength="20"
+                        (hasError)="hasError($event)" (countryChange)="onCountryChange($event)" required />
+                        <!--<input ng2TelInput [defaultValue]="'uk'"  type="text" class="form-control" value="phoneNumber" [(ngModel)]="phoneNumber"
+                            name="phoneNumber" placeholder="Phone number" (countryChange)="onCountryChange($event)">-->
+                            <span *ngIf="validPhone" style="color: red;">  Invalid phone number </span>
+                    </div>
+                </div>
+                <div class="col-md-12 text-right">
+                    <button type="submit" [disabled]="!phoneForm.form.valid" class="btn btn-primary btn-sm">Change Number</button>
+                </div>
+            </div>
+                </form>
+                <br>
+
+                <!--Email change-->
+                <form #emailForm="ngForm" (ngSubmit)="changeEmail()" class="mt-4 settings-form" >
+                    <div class="row">
+                
+                <div class="col-md-6">
+                    <div class="form-row mb-3 align-items-center">
+                        
+                        <div class="col">
+                            <label for="settingsEmailAddress">Email Address</label>
+                            <input type="email" class="form-control" maxlength="30"
+                            value="email" [(ngModel)]="email" name="email"
+                              [pattern]="emailPattern" placeholder="Email Address" required>
+                            <small id="emailHelp" class="form-text text-muted">Updating your email will update your Loging Credential.</small>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="settingsAddress">Password</label>
+                            <input type="password" class="form-control" [(ngModel)]="password"
+                            name="password"
+                            minlength="8" maxlength="40" placeholder="Password" required>
+                        </div>
+                </div>
+                <div class="col-md-12 text-right">
+                    <button type="submit" [disabled]="!emailForm.form.valid" class="btn btn-primary btn-sm">Change Email</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="content">
+    <div class="settings-form p-4">
+        <h2 class="mb-4">Disable Account</h2>
+       
+
+        <form #deleteForm="ngForm" (ngSubmit)="deleteAcount()" class="mt-4 settings-form">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="settingsCurrentPassword"> Password</label>
+                    <input type="password" class="form-control" [(ngModel)]="password"
+                        name="password" placeholder="Password" maxlength="40" minlength="8" required>
+                </div>
+            </div>
+        
+
+            <div class="col-md-12">
+                <p class="agree-privacy" style="color: red;">Deleting your account will permanently remove all your information from our system, 
+                    including your profile, posts, comments, and messages. This action cannot be undone, so please be sure that you want
+                     to delete your account before proceeding. If you are experiencing any issues with our app,
+                      we encourage you to contact our support team for assistance before taking this drastic step. 
+                      Please note that by deleting your account, you will no longer have access to any of the features or benefits 
+                      that come with being a registered user. If you still wish to delete your account, please click the button below to
+                       proceed.</p>
+            </div>
+
+            <div class="col-md-6">
+                <label class="custom-control material-checkbox" >
+                    <input type="checkbox" class="material-control-input" 
+                    (change)="checkButton($event)" [(ngModel)]="isCheked" name="isCheked" required  >
+                    <span class="material-control-indicator"></span>
+                    <span class="material-control-description">I Read and Agree to Terms</span>
+                </label>
+            </div>
+            
+            <div class="col-md-12 text-right">
+                <button type="submit" [disabled]="!deleteForm.form.valid || !isCheked"  class="btn btn-primary btn-sm">Delete Acount</button>
+            </div>
+        </form>
+    </div>
+</div>

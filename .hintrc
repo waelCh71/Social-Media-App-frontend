@@ -1,0 +1,54 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "meta-viewport": "off",
+    "axe/forms": [
+      "default",
+      {
+        "label": "off",
+        "select-name": "off"
+      }
+    ],
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "-webkit-text-size-adjust"
+        ]
+      }
+    ],
+    "axe/name-role-value": [
+      "default",
+      {
+        "button-name": "off"
+      }
+    ],
+    "disown-opener": "off",
+    "axe/parsing": [
+      "default",
+      {
+        "duplicate-id-aria": "off"
+      }
+    ],
+    "axe/structure": [
+      "default",
+      {
+        "list": "off"
+      }
+    ],
+    "axe/aria": [
+      "default",
+      {
+        "aria-allowed-attr": "off"
+      }
+    ],
+    "axe/text-alternatives": [
+      "default",
+      {
+        "image-alt": "off"
+      }
+    ]
+  }
+}

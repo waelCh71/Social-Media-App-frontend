@@ -1,0 +1,37 @@
+<div class="content">
+    <div class="settings-form p-4">
+        <h2>Your Account</h2>
+        <form #nameForm="ngForm" (ngSubmit)="changeName()" class="mt-4 settings-form">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="settingsFirstName">First Name</label>
+                    <input type="text" class="form-control" [value]="firstName" [(ngModel)]="firstName"
+                    name="firstName" placeholder="First Name" minlength="2" maxlength="15" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="settingsLastName">Last Name</label>
+                    <input type="text" class="form-control" [value]="lastName" [(ngModel)]="lastName"
+                    name="lastName" placeholder="Last Name" minlength="2" maxlength="15" required>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-row mb-3 align-items-center">
+                    <div class="col">
+                        <label for="settingsUsername">Password</label>
+                        <input type="password" class="form-control" [(ngModel)]="password"
+                        name="password" placeholder="Password" minlength="8" maxlength="40" required>
+                        <small id="usernameHelp" class="form-text text-muted">Changing name to many times may cause to Block your Account.</small>
+                    </div>
+                    <div class="col check-username">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="submit" [disabled]="!nameForm.form.valid" class="btn btn-primary btn-sm">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>

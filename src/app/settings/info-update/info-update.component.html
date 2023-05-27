@@ -1,0 +1,44 @@
+<div class="content">
+    <div class="settings-form p-4">
+        <h2>Acount Info</h2>
+
+        <form #infoForm="ngForm" (ngSubmit)="changeInfo()" class="mt-4 settings-form">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="settingsFirstName"> Country </label>
+                    <input type="text" class="form-control" [value]="country" [(ngModel)]="country"
+                    name="country" placeholder="Country" minlength="2" maxlength="25" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="settingsFirstName"> State </label>
+                    <input type="text" class="form-control" [value]="city" minlength="2" maxlength="25" [(ngModel)]="city"
+                    name="city" placeholder="City" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-row mb-3 align-items-center">
+                    <div class="col">
+                        <label>Date Of Birth</label>
+                        <div class="form-group">
+                            <input type="date" class="form-control" [value]="dob" [(ngModel)]="dob"
+                            name="dob" [min]="minDate" [max]="maxDate" required>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="settingsFirstName"> Bio </label>
+                    <textarea class="form-control" [value]="bio" [(ngModel)]="bio"
+                    name="bio" placeholder="Bio" maxlength="200" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="submit" [disabled]="!infoForm.form.valid"  class="btn btn-primary btn-sm">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>

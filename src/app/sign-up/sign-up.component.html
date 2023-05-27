@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>sign-up</title>
+    
+</head>
+
+<body>
+    <div class="row ht-100v flex-row-reverse no-gutters">
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <div class="signup-form">
+                <div class="auth-logo text-center mb-5">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="../../assets/images/VH.png" width="64" height="64" class="logo-img" alt="Logo">
+                        </div>
+                        <div class="col-md-10">
+                            <p>Create Acount</p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <form #regForm="ngForm" (ngSubmit)="register()" class="pt-5">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" [(ngModel)]="firstName"
+                                 class="form-control" name="firstName" minlength="2" maxlength="15" placeholder="First Name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" [(ngModel)]="lastName"
+                                 name="lastName" minlength="2" maxlength="15" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="email" class="form-control" [(ngModel)]="email"
+                                name="email" maxlength="30" placeholder="Email Address" pattern={{emailPattern}} required>
+                            </div>
+                        </div>
+                        
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input ng2TelInput type="tel" [ng2TelInputOptions]="{initialCountry: 'tn'}"
+                            class="form-control" [(ngModel)]="phoneNumber" name="phoneNumber" maxlength="20"
+                            (hasError)="hasError($event)" placeholder="Phone number" (countryChange)="onCountryChange($event)">
+                            <span *ngIf="validPhone" style="color: red;">  Invalid phone number </span>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="country"
+                             name="country" placeholder="Country" minlength="2" maxlength="15" required>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="col-md-6">
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-control" minlength="2" maxlength="15" [(ngModel)]="city"
+                             name="city" placeholder="State/City" required>
+                        </div>
+                    </div>
+                        
+                    <div class="col-md-12">
+                        <label>Date Of Birth</label>
+                        <div class="form-group">
+                            <input type="date" class="form-control" [(ngModel)]="dob"
+                            name="dob" [min]="minDate" [max]="maxDate" required>
+                        </div>
+                    </div>
+                        
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <select class="custom-select mr-sm-6" ngModel name="gender" 
+          [(ngModel)]="gender" required>
+            <option value="">Gender...</option>
+            <option value="Male" >MALE</option>
+            <option value="Female">Female</option>
+          </select>
+                        </div>
+                    </div>
+                    
+                        
+                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="password" class="form-control"  [(ngModel)]="password" maxlength="40"
+                                name="password" (change)="checkPasswordStrngth()" placeholder="Password" minlength="8" required>
+                            </div>
+                            <div class="col check-username">
+                                <div class="progress w-25" *ngIf="showProgressbar">
+                                    <div class="progress-bar bg-success"  role="progressbar" [style.width.%]="progressbar" 
+                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="col check-password" *ngIf="showPasswordShort" style="color: red">
+                                    <span ><i class='bx bx-x error'></i> Passwords Too Short</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="password" class="form-control"  [(ngModel)]="confirmPassword" maxlength="40"
+                                name="confirmpassword" (change)="checkPasswordMatch()" placeholder="Confirm Password" minlength="8" required>
+                            </div>
+                            <div class="col check-password" style="color: red">
+                                <span *ngIf="passwordNotMatch"><i class='bx bx-x error'></i> Passwords do not match</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="agree-privacy">By clicking the Sign Up button below you agreed to our privacy policy and terms of use of our website.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="go-login">Already a member? <a href="" routerLink="/signIn">Sign In</a></span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <div class="form-group">
+                                <button type="submit" [disabled]="!regForm.form.valid" class="btn btn-primary sign-up">Sign Up</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            
+            </div>
+        </div>
+        <div class="col-md-6 auth-bg-image d-flex justify-content-center align-items-center">
+            <div class="auth-left-content mt-5 mb-5 text-center">
+                <div class="weather-small text-white">
+                    <p class="current-weather">{{day}}</p>
+                    <p class="weather-city">{{clock}}</p>
+                    <!--
+                    <p class="current-weather"><i class='bx bx-sun'></i> <span>{{Date1}}&deg;</span></p>
+                    <p class="weather-city">Gyumri</p>
+                    -->
+                </div>
+                <div class="text-white mt-5 mb-5">
+                    <h2 class="create-account mb-3">VIBE HUB</h2>
+                    <p>The World Is Yours</p>
+                </div>
+                <div class="auth-quick-links">
+                    <!--ToDO who we are-->
+                    <a  class="btn btn-outline-primary">Find More About Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body></html>
+

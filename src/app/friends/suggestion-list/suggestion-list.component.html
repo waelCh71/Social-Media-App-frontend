@@ -1,0 +1,79 @@
+<div class="bg-white py-3 px-4 shadow-sm">
+    <div class="card-head d-flex justify-content-between">
+        <h5 class="mb-4"> You may Know</h5>
+        <a href="#" class="btn btn-link">See All</a>
+    </div>
+    <div class="row">
+        <!--Firs Card-->
+        <div class="col-md-4 col-sm-6" *ngFor="let user of users">
+            
+            <div class="card group-card bg-grey shadow-sm">
+                <a style="cursor: pointer;" routerLink="/profile/{{user.id}}">
+                <img [src]=user.profile_pic_url (error)="onImageError($event)" class="card-img-top group-card-image" alt=""  height="250px">
+            </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{user.fullName}} <img src="assets/images/theme/verify.png" width="10px" class="verify" alt="Group verified"></h5>
+                    <p class="card-text">{{user.country}}, {{user.city}}</p>
+                
+                    <div class="btn-group w-100" role="group">
+                        <a style="cursor: pointer;" (click)="sendRequest(user.id)" class="btn btn-quick-link join-group-btn border w-100">
+                            Follow</a>
+                        <div class="btn-group" role="group">
+                            <button id="friendsMore" type="button" class="btn btn-quick-link join-group-btn border btn-group-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class='bx bx-dots-horizontal-rounded'></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="friendsMore">
+                                <a class="dropdown-item" style="cursor: pointer;" (click)="blockUser(user.id)">Block User</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="col-md-4 col-sm-6" style="visibility: hidden;" [style.display]="users.length==0? 'block' : 'none'">
+            <div class="card group-card shadow-sm">
+                <img src="assets/images/groups/group-4.jpg" class="card-img-top group-card-image" alt="Group image">
+                <div class="card-body">
+                    <h5 class="card-title">Capture The Best</h5>
+                    <p class="card-text">2.8k Members 8+ post a day</p>
+                    <a href="#" class="btn btn-quick-link join-group-btn border w-100">Join</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6" style="visibility: hidden;" [style.display]="users.length<=1? 'block' : 'none'">
+            <div class="card group-card shadow-sm">
+                <img src="assets/images/groups/group-4.jpg" class="card-img-top group-card-image" alt="Group image">
+                <div class="card-body">
+                    <h5 class="card-title">Capture The Best</h5>
+                    <p class="card-text">2.8k Members 8+ post a day</p>
+                    <a href="#" class="btn btn-quick-link join-group-btn border w-100">Join</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6" style="visibility: hidden;" [style.display]="users.length<=2? 'block' : 'none'">
+            <div class="card group-card shadow-sm">
+                <img src="assets/images/groups/group-4.jpg" class="card-img-top group-card-image" alt="Group image">
+                <div class="card-body">
+                    <h5 class="card-title">Capture The Best</h5>
+                    <p class="card-text">2.8k Members 8+ post a day</p>
+                    <a href="#" class="btn btn-quick-link join-group-btn border w-100">Join</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6" style="visibility: hidden;" [style.display]="users.length<=3? 'block' : 'none'">
+            <div class="card group-card shadow-sm">
+                <img src="assets/images/groups/group-4.jpg" class="card-img-top group-card-image" alt="Group image">
+                <div class="card-body">
+                    <h5 class="card-title">Capture The Best</h5>
+                    <p class="card-text">2.8k Members 8+ post a day</p>
+                    <a href="#" class="btn btn-quick-link join-group-btn border w-100">Join</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
