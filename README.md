@@ -1,8 +1,34 @@
-# PFA
+# VIBE HUB
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.5.
 
 Vibe Hub is a social media Web application that contains all basic features of a social media platform.
+
+Security: JWT TOKEN (every request to the server must be authenticated and secured by a valid token)
+
+## FEATURES
+
+Authentification
+
+Register
+
+Home
+
+Profile
+
+Friends Profile
+
+Mange User Info
+
+Manage Friends (Follow, Unfollow , Accept Friends, Delete Friends, Block User, Unblock User)
+
+Manage Posts (Add, Delete), NB : Files are stored using Firebase Storage
+
+Realtime Chat
+
+Notification
+
+Live Brodcast
 
 ## Development server
 
